@@ -46,7 +46,7 @@ export default class Resources extends EventEmitter
         this.loader.on('end', () =>
         {
             this.groups.loaded.push(this.groups.current)
-            
+            console.log(this.groups.current)
             // Trigger
             this.trigger('groupEnd', [this.groups.current])
 
@@ -66,7 +66,7 @@ export default class Resources extends EventEmitter
         this.groups.current = this.groups.assets.shift()
         this.groups.current.toLoad = this.groups.current.items.length
         this.groups.current.loaded = 0
-
+console.log(this.groups.current.items)
         this.loader.load(this.groups.current.items)
     }
 

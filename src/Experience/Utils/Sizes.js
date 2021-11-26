@@ -24,6 +24,21 @@ export default class Sizes extends EventEmitter
         window.addEventListener('resize', this.resize)
 
         this.resize()
+
+        // PITCH SIZE CONSTANTS
+
+        // pitch2.jpg texture - pitch size = 735 x 1100 px, total size = 851 x 1304px
+        // convert to rough metres = 73.5 x 110, 85.1 x 130.4
+        this.pitchLength = 130.4
+        this.pitchWidth = 85.1
+        this.pitchDepth = 2
+        this.goalpostHeight = 2.44
+        this.goalpostThickness = 0.1
+        this.goalpostWidth = 7.32
+        this.pitchTextureGoalLineOffset = (130.4 - 110) / 2 - 0.5
+        this.awayGoalBump = 0.5
+        this.logoSize = 10
+        this.hoardingsSize = 3
     }
 
     /**
