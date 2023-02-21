@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Pitch from './Pitch';
 import Environment from './Environment';
+import Hoardings from './Hoardings';
 
 export default class World
 {
@@ -12,18 +13,25 @@ export default class World
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.resources = this.experience.resources
+        this.group = new THREE.Object3D()
 
         this.objectsToIntersect = []
+        console.log('base')
+
+
 
         this.resources.on('groupEnd', (_group) =>
         {
-            for(let i = 0; i < 10; i++) {
+            const basePitch = new Pitch(this.generateCoordinates(0,0))
+            for(let i = 0; i < 100; i++) {
                 const column = i % 5
                 const row = Math.trunc(i / 5)
                 const coordinates = this.generateCoordinates(row, column)
-                this.objectsToIntersect.push(new Pitch(coordinates))
+                // const pitch = basePitch.clone()
+                // this.objectsToIntersect.push(pitch)
+                // this.group.add(pitch.mesh)
+                // this.scene.add(this.objectsToIntersect)
 
-                // new Hoardings(coordinates)
                 // if(column === 0) {
                 //     new Hoardings(coordinates)
                 // }
@@ -32,7 +40,7 @@ export default class World
                 //     new Hoardings(this.generateCoordinates(row, 5))
                 // }
             }
-
+            this.scene.add(this.group)
             this.setupBaseFloor()
 
             // apply environment afterwards so effects like shadows can be applied.

@@ -13,11 +13,14 @@ export default class Pitch extends EventEmitter {
     this.debug = this.experience.debug
 
     this.pitchCoordinates = pitchCoordinates.pitch
+    this.group = new THREE.Object3D()
 
     this.setGeometry()
     this.setTextures()
     this.setMaterial()
     this.setMesh(this.pitchCoordinates)
+
+    // this.scene.add(this.group)
   }
 
   setGeometry(){
@@ -30,6 +33,7 @@ export default class Pitch extends EventEmitter {
   setTextures(){
     this.textures = {}
     this.textures.pitch = this.resources.items.pitchTexture
+    console.log(this.textures.pitch)
     this.textures.pitch.encoding = THREE.sRGBEncoding
 
     this.textures.dirtColor = this.resources.items.dirtColorTexture
@@ -66,6 +70,7 @@ export default class Pitch extends EventEmitter {
     this.mesh.position.y = this.pitchCoordinates.pitchY
     this.mesh.position.z = this.pitchCoordinates.pitchZ
     this.mesh.receiveShadow = true
-    this.scene.add(this.mesh)
+    // this.scene.add(this.mesh)
+    // this.group.add(this.mesh)
   }
 }
